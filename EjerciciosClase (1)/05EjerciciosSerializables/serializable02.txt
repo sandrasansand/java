@@ -1,0 +1,231 @@
+package serializables02;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String salir="no";
+        int ejercicio=0;
+        while (!salir.equals("si")){
+            System.out.println(" 1. Grabar Alumnos.");
+            System.out.println(" 2. Leer Alumnos.");
+            System.out.print("Que ejercicio quieres hacer (salir = 0)? (1-2): ");
+            boolean repetir=false;
+            do{
+                repetir=false;
+                try {
+                    ejercicio = sc.nextInt(); 
+                } catch (NumberFormatException ex) {
+                    repetir=true;
+                    System.out.println(ex.getMessage());
+                } 
+            }while(repetir);
+            System.out.println("");
+
+            switch(ejercicio){
+                case 1:
+                        Funciones.GrabarAlumnos();
+                        System.out.println(); 
+                        break;
+                case 2:
+                        Funciones.LeerAlumnos();
+                        System.out.println();
+                        break;
+                default:
+                        if (ejercicio==0)
+                            break; 
+                        else  System.out.println("Ejercicio incorrecto");
+            }      
+
+            System.out.print("Desea salir (' '/*)? ");
+            salir = sc.next();
+            }
+     }           //Fin while (!salir.equals("si"))
+}
+//////////////////////Clase Persona//////////////////////
+package serializables02;
+
+import java.io.Serializable;
+
+public class Persona implements Serializable{
+    private String nif;
+    private String nombre;
+    private int edad;
+    public Persona() {
+    }
+    public Persona(String nif, String nombre, int edad) {
+        this.nif = nif;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    public int getEdad() {
+        return edad;
+    }
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    public String getNif() {
+        return nif;
+    }
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }    
+}
+////////////////////Clase Alumno////////////////////////
+package serializables02;
+/*
+ Alumno es una clase derivada de Persona y contiene un atributo de la clase Fecha
+ */
+public class Alumno extends Persona{
+    private Fecha fechaMatricula;
+    
+    public Alumno(String nif, String nombre, int edad, Fecha fechaMatricula) {
+        super(nif, nombre, edad);
+        this.fechaMatricula = new Fecha();
+        setFechaMatricula(fechaMatricula);
+    }
+    public Alumno() {
+    }
+    public Fecha getFechaMatricula() {
+        return fechaMatricula;
+    }
+    public void setFechaMatricula(Fecha fechaMatricula) {
+        this.fechaMatricula.setDia(fechaMatricula.getDia());
+        this.fechaMatricula.setMes(fechaMatricula.getMes());
+        this.fechaMatricula.setAño(fechaMatricula.getAño());
+    }    
+}
+///////////////////////////Clase Fecha //////////////////////
+package serializables02;
+
+import java.io.Serializable;
+
+public class Fecha implements Serializable{
+    private int dia;
+    private int mes;
+    private int año;
+   
+    public Fecha(int dia, int mes, int año) {
+        this.dia = dia;
+        this.mes = mes;
+        this.año = año;
+    }
+    public Fecha() {
+    }
+    public int getAño() {
+        return año;
+    }
+    public void setAño(int año) {
+        this.año = año;
+    }
+    public int getDia() {
+        return dia;
+    }
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+    public int getMes() {
+        return mes;
+    }
+    public void setMes(int mes) {
+        this.mes = mes;
+    }    
+}
+//////////////////////////Funciones////////////////////////
+package serializables02;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class Funciones {
+/**
+Programa java que escribe en un fichero tres objetos de tipo Alumno. Alumno es
+una clase derivada de Persona y contiene un atributo Fecha
+*/
+    public static void GrabarAlumnos(){
+        FileOutputStream fos = null;
+        ObjectOutputStream salida = null;
+        Alumno a;
+        Fecha f;
+        try {
+            fos = new FileOutputStream("/ficheros/alumnos.dat");
+            salida = new ObjectOutputStream(fos);
+            f = new Fecha(5,9,2011);
+            a = new Alumno("12345678A","Lucas González", 20, f);
+            salida.writeObject(a);
+            f = new Fecha(7,9,2011);
+            a = new Alumno("98765432B","Anacleto Jiménez", 19, f);
+            salida.writeObject(a);
+            f = new Fecha(8,9,2011);
+            a = new Alumno("78234212Z","María Zapata", 21, f);
+            salida.writeObject(a);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+            if(fos!=null) fos.close();
+            if(salida!=null) salida.close();
+            } catch (IOException e) {
+            System.out.println(e.getMessage());
+            }
+        }
+    }
+/**
+Programa Java que lee los objetos del fichero creado en el Ejemplo anterior
+*/
+    public static void LeerAlumnos(){
+        FileInputStream fis = null;
+        ObjectInputStream entrada = null;
+        Alumno a;
+        try {
+            fis = new FileInputStream("/ficheros/alumnos.dat");
+            entrada = new ObjectInputStream(fis);
+            a = (Alumno) entrada.readObject();
+            System.out.println(a.getNif() + " " + a.getNombre() + " " + a.getEdad()
+                                    + " " + a.getFechaMatricula().getDia() + "-"
+                                    + a.getFechaMatricula().getMes() + "-"
+                                    + a.getFechaMatricula().getAño());
+            a = (Alumno) entrada.readObject();
+            System.out.println(a.getNif() + " " + a.getNombre() + " " + a.getEdad()
+                                    + " " + a.getFechaMatricula().getDia() + "-"
+                                    + a.getFechaMatricula().getMes() + "-"
+                                    + a.getFechaMatricula().getAño());
+            a = (Alumno) entrada.readObject();
+            System.out.println(a.getNif() + " " + a.getNombre() + " " + a.getEdad()
+                                    + " " + a.getFechaMatricula().getDia() + "-"
+                                    + a.getFechaMatricula().getMes() + "-"
+                                    + a.getFechaMatricula().getAño());
+            } catch (FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            } catch (ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+            if (fis != null) {
+                fis.close();
+            }
+            if (entrada != null) {
+                entrada.close();
+            }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }    
+    }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files01/src"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files02/src"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files03/src"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files04/src"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files05/src"/>
+	<classpathentry kind="src" path="01EjerciciosFiles/files06/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto01/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto02/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto03/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto04/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto05/src"/>
+	<classpathentry kind="src" path="02EjerciciosTexto/texto06/src"/>
+	<classpathentry kind="src" path="03EjerciciosBinarios/binarios01/src"/>
+	<classpathentry kind="src" path="03EjerciciosBinarios/binarios02/src"/>
+	<classpathentry kind="src" path="03EjerciciosBinarios/binarios03/src"/>
+	<classpathentry kind="src" path="03EjerciciosBinarios/binarios04/src"/>
+	<classpathentry kind="src" path="04EjerciciosRandom/random01/src"/>
+	<classpathentry kind="src" path="04EjerciciosRandom/random02/src"/>
+	<classpathentry kind="src" path="04EjerciciosRandom/random03/src"/>
+	<classpathentry kind="src" path="05EjerciciosSerializables/serializables01/src"/>
+	<classpathentry kind="src" path="05EjerciciosSerializables/serializables02/src"/>
+	<classpathentry kind="output" path="01EjerciciosFiles/files01/build/classes"/>
+</classpath>

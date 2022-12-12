@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Enum01/src"/>
+	<classpathentry kind="src" path="Enum02/src"/>
+	<classpathentry kind="src" path="InicioMaps0/src"/>
+	<classpathentry kind="src" path="InicioMaps1/src"/>
+	<classpathentry kind="src" path="InicioMaps2/src"/>
+	<classpathentry kind="src" path="MantenimientoListaEnteros/src"/>
+	<classpathentry kind="src" path="MapEntidadesBancarias/src"/>
+	<classpathentry kind="src" path="sb01/src"/>
+	<classpathentry kind="src" path="sb02/src"/>
+	<classpathentry kind="output" path="Enum01/build/classes"/>
+</classpath>
