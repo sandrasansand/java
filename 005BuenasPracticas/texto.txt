@@ -1,0 +1,4 @@
+petra,100
+ana,200
+sofia,300
+beatriz,250
