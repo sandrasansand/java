@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="patrones_diseno/src"/>
+	<classpathentry kind="output" path="patrones_diseno/out/production/patrones_diseno"/>
+</classpath>
